@@ -2,11 +2,9 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
-// Registrar os componentes do Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const MovementChart = ({ movements }) => {
-    // Filtrar e somar receitas e despesas
     const receitas = movements
         .filter(movement => movement.type === 'Receita')
         .reduce((total, movement) => total + parseFloat(movement.value.replace('R$', '').replace(',', '.')), 0);
@@ -15,14 +13,13 @@ const MovementChart = ({ movements }) => {
         .filter(movement => movement.type === 'Despesa')
         .reduce((total, movement) => total + parseFloat(movement.value.replace('R$', '').replace(',', '.')), 0);
 
-    // Configuração dos dados do gráfico
     const data = {
         labels: ['Receitas', 'Despesas'],
         datasets: [
             {
                 label: 'R$',
                 data: [receitas, despesas],
-                backgroundColor: ['#3b82f6', '#ef4444'], // Azul para receitas e vermelho para despesas
+                backgroundColor: ['#3b82f6', '#ef4444'],
                 borderColor: ['#3b82f6', '#ef4444'],
                 borderWidth: 1,
             },
