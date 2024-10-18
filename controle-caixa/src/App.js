@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
-import './index.css'; // Importação do Tailwind
+import './index.css';
 
 const App = () => {
     const [movements, setMovements] = useState([]);
